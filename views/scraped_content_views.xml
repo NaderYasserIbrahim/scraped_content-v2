@@ -1,0 +1,70 @@
+<odoo>
+    <!-- Action for Scraped Jobs -->
+    <record id="action_scraped_job" model="ir.actions.act_window">
+        <field name="name">Scraped Jobs</field>
+        <field name="res_model">scraped.job</field>
+        <field name="view_mode">list,form</field>
+        <field name="target">current</field>
+    </record>
+
+    <!-- Tree View -->
+    <record id="view_scraped_job_tree" model="ir.ui.view">
+        <field name="name">scraped.job.tree</field>
+        <field name="model">scraped.job</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="name"/>
+                <field name="company_name"/>
+                <field name="location"/>
+                <field name="date_posted"/>
+                <field name="status"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- Form View -->
+    <record id="view_scraped_job_form" model="ir.ui.view">
+        <field name="name">scraped.job.form</field>
+        <field name="model">scraped.job</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <notebook>
+                        <page string="General Info">
+                            <group>
+                                <field name="name"/>
+                                <field name="company_name"/>
+                                <field name="company_logo_url"/>
+                                <field name="location"/>
+                            </group>
+                        </page>
+                        <page string="Job Details">
+                            <group>
+                                <field name="source_url"/>
+                                <field name="date_posted"/>
+                            </group>
+                        </page>
+                        <page string="Status">
+                            <group>
+                                <field name="status"/>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Server Action -->
+    <record id="action_import_scraped_jobs" model="ir.actions.server">
+        <field name="name">Import Scraped Jobs</field>
+        <field name="model_id" ref="model_scraped_job"/>
+        <field name="state">code</field>
+        <field name="code">model.manually_import_jobs_from_csv()</field>
+    </record>
+
+    <!-- Menu Items -->
+    <menuitem id="scraping_manager_menu" name="Scraping Manager"/>
+    <menuitem id="scraped_job_menu" name="Scraped Jobs" parent="scraping_manager_menu" action="action_scraped_job"/>
+    <menuitem id="menu_import_scraped_jobs" name="Import Jobs from CSV" parent="scraping_manager_menu" action="action_import_scraped_jobs"/>
+</odoo>

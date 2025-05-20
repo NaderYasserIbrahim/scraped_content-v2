@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_scraped_job,scraped.job,model_scraped_job,,1,1,1,1
+access_scraped_blog,scraped.blog,model_scraped_blog,,1,1,1,1
+access_scraped_page,scraped.page,model_scraped_page,,1,1,1,1

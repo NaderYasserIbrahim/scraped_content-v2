@@ -1,0 +1,64 @@
+<odoo>
+    <!-- Action for Scraped Blogs -->
+    <record id="action_scraped_blog" model="ir.actions.act_window">
+        <field name="name">Scraped Blogs</field>
+        <field name="res_model">scraped.blog</field>
+        <field name="view_mode">list,form</field>
+        <field name="target">current</field>
+    </record>
+
+    <!-- Tree View -->
+    <record id="view_scraped_blog_tree" model="ir.ui.view">
+        <field name="name">scraped.blog.tree</field>
+        <field name="model">scraped.blog</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="title"/>
+                <field name="date_published"/>
+                <field name="status"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- Form View -->
+    <record id="view_scraped_blog_form" model="ir.ui.view">
+        <field name="name">scraped.blog.form</field>
+        <field name="model">scraped.blog</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <notebook>
+                        <page string="Main Info">
+                            <group>
+                                <field name="title"/>
+                                <field name="summary"/>
+                                <field name="content"/>
+                            </group>
+                        </page>
+                        <page string="Details">
+                            <group>
+                                <field name="source_url"/>
+                                <field name="date_published"/>
+                                <field name="status"/>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Server Action -->
+    <record id="action_import_scraped_blogs" model="ir.actions.server">
+        <field name="name">Import Scraped Blogs</field>
+        <field name="model_id" ref="model_scraped_blog"/>
+        <field name="state">code</field>
+        <field name="code">model.manually_import_blogs_from_csv()</field>
+    </record>
+
+    <!-- Menu Items -->
+    <menuitem id="scraped_blog_menu" name="Scraped Blogs"
+              parent="scraping_manager_menu" action="action_scraped_blog"/>
+    <menuitem id="menu_import_scraped_blogs" name="Import Blogs from CSV"
+              parent="scraping_manager_menu" action="action_import_scraped_blogs"/>
+</odoo>

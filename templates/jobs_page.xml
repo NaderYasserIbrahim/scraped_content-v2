@@ -1,0 +1,13 @@
+<odoo>
+    <template id="jobs_page_template" name="Scraped Job Listings" >
+        <t t-call="website.layout">
+            <div class="container">
+                <h1>Scraped Job Listings</h1>
+                <ul>
+                    <li>Test job 1</li>
+                    <li>Test job 2</li>
+                </ul>
+            </div>
+        </t>
+    </template>
+</odoo>

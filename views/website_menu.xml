@@ -1,0 +1,9 @@
+<odoo>
+    <data>
+        <menuitem id="menu_scraped_jobs_website"
+                  name="Scraped Jobs"
+                  parent="scraping_manager_menu"
+                  sequence="10"
+                  />
+    </data>
+</odoo>
